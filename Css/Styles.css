@@ -1,0 +1,99 @@
+/*
+    Updated - July 29, 2024
+*/
+
+:root { /*color-scheme - you can reference these colors just by typing the name*/
+    --sage-green-color: #8BC34A;
+    --terracotta-color: #E07A5F;
+    --beige-color: #F4E3C2;
+    --background-color: #FBF7ED;
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: poppins;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: poppins;
+    /*background-color: var(--background-color);*/
+}
+
+.navigation {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: auto;
+    width: 100%;
+    margin: 0px auto;
+    padding: 10px 30px;
+    background-color: var(--beige-color);
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+
+}
+    .logo {
+        color: var(--sage-green-color);
+        font-weight: 400;
+        width: 50px;
+        height: 50px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+        .logo span {
+            color: var(--terracotta-color)
+        }
+        .logo img {
+            max-width: 50px;
+            height: auto;
+            margin-left: 15px;
+        }
+
+    .menu-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: right;
+        margin-right: auto;
+        margin-left: 8%;
+    }
+
+    .menu-container li {
+        margin: 0 60px; /* Adjust spacing between menu items */
+    }    
+
+    .menu-container li a {
+        color: #000; /* Fix color format */
+        font-weight: 600;
+    }
+
+        .menu-container li a:hover { /*Changes menu items color on hover*/
+            color: var(--sage-green-color);
+        }
+
+        .menu-container li a:active { /*Changes menu items color on click*/
+            color: var(--terracotta-color);
+        }
