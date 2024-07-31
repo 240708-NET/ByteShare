@@ -7,6 +7,7 @@
     --terracotta-color: #E07A5F;
     --beige-color: #F4E3C2;
     --background-color: #FBF7ED;
+    --dark-olive-green: #426B1F;
 }
 
 
@@ -29,21 +30,19 @@ ul {
 body {
     margin: 0px;
     padding: 0px;
-    font-family: poppins;
-    /*background-color: var(--background-color);*/
 }
 
 .navigation {
     position: fixed;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    flex-flow: flex-end;
     max-width: auto;
     width: 100%;
     margin: 0px auto;
     padding: 10px 30px;
-    background-color: var(--beige-color);
     z-index: 100;
+    border: 1px solid #000;
 }
 
 .logo-container {
@@ -55,6 +54,7 @@ body {
     .logo {
         color: var(--sage-green-color);
         font-weight: 400;
+        font-size: large;
         width: 50px;
         height: 50px;
         border-radius: 20px;
@@ -74,9 +74,7 @@ body {
 
     .menu-container {
         display: flex;
-        justify-content: center;
         align-items: center;
-        float: right;
         margin-right: auto;
         margin-left: 8%;
     }
@@ -86,7 +84,8 @@ body {
     }    
 
     .menu-container li a {
-        color: #000; /* Fix color format */
+        color: #000;
+        font-size: small;
         font-weight: 600;
     }
 
@@ -97,3 +96,20 @@ body {
         .menu-container li a:active { /*Changes menu items color on click*/
             color: var(--terracotta-color);
         }
+
+        .menu-container button {
+            background-color: var(--dark-olive-green);
+            padding: 10px 10px;
+            font-weight: 300;
+            border: none;
+            border-radius: 10%;
+        }
+
+            .menu-container button:active {
+                background-color: var(--sage-green-color);
+            }
+
+            .menu-container button a {
+                color: #fff;
+                font-weight: 300;
+            }
