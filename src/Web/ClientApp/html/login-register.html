@@ -10,7 +10,7 @@ Updated - July 29, 2024
         <!--==Keywords=========================================================-->
         <meta name="keywords" content="ByteShare, sharing, Food recipes, Cooking community, Recipe app, Share recipes, Culinary inspiration, Home cooking, Gourmet recipes, Recipe collections, Food enthusiasts, Cooking tips, Recipe ratings, Recipe reviews, User-submitted recipes, Online cookbook, Culinary network, Kitchen creations, Cooking ideas, Food blog, Recipe photos">
         <!--==Title============================================================-->
-        <title>ByteShare | Where Recipies Live</title>
+        <title>Login | Register</title>
         <!--==Meta-Description=================================================-->
         <meta name="description" content="Join ByteShare, a vibrant community where food enthusiasts can explore, share, and enjoy recipes from around the world. Discover new dishes, share your culinary creations, and connect with fellow cooks. Your go-to platform for cooking inspiration and recipe sharing.">
         <!--==Stylesheet=======================================================-->
@@ -38,5 +38,21 @@ Updated - July 29, 2024
                 <button><a href="login-register.html">Login | Register</a></button>
             </ul>
         </nav>
+
+        <div class="login-container">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
     </body>
 </html>
