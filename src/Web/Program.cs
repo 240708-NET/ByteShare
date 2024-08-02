@@ -1,3 +1,6 @@
+using ByteShare.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -42,3 +45,12 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+//---------------------------------- Migration Code -------------------------------
+// var connection = "Server=localhost;User=sa;Password=<your password here>;Database=ByteShare;TrustServerCertificate=true;";
+// builder.Services.AddDbContext<ApplicationDbContext>(
+//     options => options.UseSqlServer(connection, b => b.MigrationsAssembly("ByteShare.Web"))
+//     );
+// var app = builder.Build();
+// app.MapGet("/", () => "Hello World!");
+// app.Run();

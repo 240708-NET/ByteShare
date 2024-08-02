@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>ByteShare.Domain</RootNamespace>
+    <AssemblyName>ByteShare.Domain</AssemblyName>
   </PropertyGroup>
 
 </Project>
