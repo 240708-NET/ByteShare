@@ -8,6 +8,8 @@ public class User : BaseAuditableEntity<int, User>
     public required string Password { get; set; }
     public required string Email { get; set; }
     public ICollection<Recipe> Recipes { get; } = [];
+    public ICollection<Ingredient> Ingredients { get; } = [];
+    public ICollection<RecipeIngredient> RecipeIngredients { get; } = [];
     public ICollection<RecipeRating> RecipeRatings { get; } = [];
     public ICollection<User> UsersCreated { get; } = [];
     public ICollection<User> UsersModified { get; } = [];

@@ -1,0 +1,8 @@
+POST http://localhost:5101/api/users
+Content-Type: application/json
+
+{
+    "Username": "adalovelace",
+    "Password": "abc123",
+    "Email": "bremer@revature.com"
+}
