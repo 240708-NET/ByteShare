@@ -1,0 +1,8 @@
+POST http://localhost:5101/api/recipes
+Content-Type: application/json
+
+{
+    "Title": "Banana Bread",
+    "Description": "How to cook banana bread, Danish style",
+    "Instructions": "Take 1 teaspoon of sugar"
+}

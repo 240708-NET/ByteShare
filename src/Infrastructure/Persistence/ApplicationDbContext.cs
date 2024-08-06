@@ -1,18 +1,12 @@
-using ByteShare.Application.Common.Interface;
+//using ByteShare.Application.Common.Interface;
 using ByteShare.Domain.Entities;
-using ByteShare.Infrastructure.Repository.Configuration;
+using ByteShare.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace ByteShare.Infrastructure.Repository;
+namespace ByteShare.Infrastructure.Persistence;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options), IApplicationDbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public DbSet<User> Users { get; set; }
-    public DbSet<RecipeRating> RecipeRatings { get; set; }
-    public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
-    public DbSet<Recipe> Recipes { get; set; }
-    public DbSet<Ingredient> Ingredients { get; set; }
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder

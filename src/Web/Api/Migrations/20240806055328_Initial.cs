@@ -12,7 +12,7 @@ namespace ByteShare.Web.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -27,21 +27,21 @@ namespace ByteShare.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_Users_CreatorId",
+                        name: "FK_User_User_CreatorId",
                         column: x => x.CreatorId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Users_Users_LastModifierId",
+                        name: "FK_User_User_LastModifierId",
                         column: x => x.LastModifierId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingredients",
+                name: "Ingredient",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -54,21 +54,21 @@ namespace ByteShare.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingredients", x => x.Id);
+                    table.PrimaryKey("PK_Ingredient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ingredients_Users_CreatorId",
+                        name: "FK_Ingredient_User_CreatorId",
                         column: x => x.CreatorId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Ingredients_Users_LastModifierId",
+                        name: "FK_Ingredient_User_LastModifierId",
                         column: x => x.LastModifierId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Recipes",
+                name: "Recipe",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -77,23 +77,22 @@ namespace ByteShare.Web.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Instructions = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatorId = table.Column<int>(type: "int", nullable: false),
+                    CreatorId = table.Column<int>(type: "int", nullable: true),
                     LastModified = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     LastModifierId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recipes", x => x.Id);
+                    table.PrimaryKey("PK_Recipe", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Recipes_Users_CreatorId",
+                        name: "FK_Recipe_User_CreatorId",
                         column: x => x.CreatorId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalTable: "User",
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Recipes_Users_LastModifierId",
+                        name: "FK_Recipe_User_LastModifierId",
                         column: x => x.LastModifierId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
@@ -108,20 +107,20 @@ namespace ByteShare.Web.Migrations
                 {
                     table.PrimaryKey("PK_UserUser", x => new { x.FollowersId, x.FollowsId });
                     table.ForeignKey(
-                        name: "FK_UserUser_Users_FollowersId",
+                        name: "FK_UserUser_User_FollowersId",
                         column: x => x.FollowersId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserUser_Users_FollowsId",
+                        name: "FK_UserUser_User_FollowsId",
                         column: x => x.FollowsId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecipeIngredients",
+                name: "RecipeIngredient",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -137,33 +136,33 @@ namespace ByteShare.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeIngredients", x => x.Id);
+                    table.PrimaryKey("PK_RecipeIngredient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_Ingredients_IngredientId",
+                        name: "FK_RecipeIngredient_Ingredient_IngredientId",
                         column: x => x.IngredientId,
-                        principalTable: "Ingredients",
+                        principalTable: "Ingredient",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_Recipes_RecipeId",
+                        name: "FK_RecipeIngredient_Recipe_RecipeId",
                         column: x => x.RecipeId,
-                        principalTable: "Recipes",
+                        principalTable: "Recipe",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_Users_CreatorId",
+                        name: "FK_RecipeIngredient_User_CreatorId",
                         column: x => x.CreatorId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_Users_LastModifierId",
+                        name: "FK_RecipeIngredient_User_LastModifierId",
                         column: x => x.LastModifierId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecipeRatings",
+                name: "RecipeRating",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -177,88 +176,88 @@ namespace ByteShare.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeRatings", x => x.Id);
+                    table.PrimaryKey("PK_RecipeRating", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RecipeRatings_Recipes_RecipeId",
+                        name: "FK_RecipeRating_Recipe_RecipeId",
                         column: x => x.RecipeId,
-                        principalTable: "Recipes",
+                        principalTable: "Recipe",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecipeRatings_Users_CreatorId",
+                        name: "FK_RecipeRating_User_CreatorId",
                         column: x => x.CreatorId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_RecipeRatings_Users_LastModifierId",
+                        name: "FK_RecipeRating_User_LastModifierId",
                         column: x => x.LastModifierId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_CreatorId",
-                table: "Ingredients",
+                name: "IX_Ingredient_CreatorId",
+                table: "Ingredient",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_LastModifierId",
-                table: "Ingredients",
+                name: "IX_Ingredient_LastModifierId",
+                table: "Ingredient",
                 column: "LastModifierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_CreatorId",
-                table: "RecipeIngredients",
+                name: "IX_Recipe_CreatorId",
+                table: "Recipe",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_IngredientId",
-                table: "RecipeIngredients",
+                name: "IX_Recipe_LastModifierId",
+                table: "Recipe",
+                column: "LastModifierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeIngredient_CreatorId",
+                table: "RecipeIngredient",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeIngredient_IngredientId",
+                table: "RecipeIngredient",
                 column: "IngredientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_LastModifierId",
-                table: "RecipeIngredients",
+                name: "IX_RecipeIngredient_LastModifierId",
+                table: "RecipeIngredient",
                 column: "LastModifierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_RecipeId",
-                table: "RecipeIngredients",
+                name: "IX_RecipeIngredient_RecipeId",
+                table: "RecipeIngredient",
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeRatings_CreatorId",
-                table: "RecipeRatings",
+                name: "IX_RecipeRating_CreatorId",
+                table: "RecipeRating",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeRatings_LastModifierId",
-                table: "RecipeRatings",
+                name: "IX_RecipeRating_LastModifierId",
+                table: "RecipeRating",
                 column: "LastModifierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeRatings_RecipeId",
-                table: "RecipeRatings",
+                name: "IX_RecipeRating_RecipeId",
+                table: "RecipeRating",
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recipes_CreatorId",
-                table: "Recipes",
+                name: "IX_User_CreatorId",
+                table: "User",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recipes_LastModifierId",
-                table: "Recipes",
-                column: "LastModifierId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_CreatorId",
-                table: "Users",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_LastModifierId",
-                table: "Users",
+                name: "IX_User_LastModifierId",
+                table: "User",
                 column: "LastModifierId");
 
             migrationBuilder.CreateIndex(
@@ -271,22 +270,22 @@ namespace ByteShare.Web.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RecipeIngredients");
+                name: "RecipeIngredient");
 
             migrationBuilder.DropTable(
-                name: "RecipeRatings");
+                name: "RecipeRating");
 
             migrationBuilder.DropTable(
                 name: "UserUser");
 
             migrationBuilder.DropTable(
-                name: "Ingredients");
+                name: "Ingredient");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "Recipe");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }

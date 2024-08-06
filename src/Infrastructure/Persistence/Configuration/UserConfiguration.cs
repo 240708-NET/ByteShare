@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ByteShare.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ByteShare.Infrastructure.Repository.Configuration;
+namespace ByteShare.Infrastructure.Persistence.Configuration;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
@@ -10,8 +10,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder
         .HasMany(u => u.Recipes)
-        .WithOne(r => r.Creator)
-        .IsRequired(true);
+        .WithOne(r => r.Creator);
+//        .IsRequired(true);
 
         builder
         .HasOne(u => u.Creator)

@@ -2,7 +2,7 @@ using ByteShare.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ByteShare.Infrastructure.Repository.Configuration;
+namespace ByteShare.Infrastructure.Persistence.Configuration;
 
 public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
 {
