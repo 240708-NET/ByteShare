@@ -5,7 +5,7 @@ namespace ByteShare.Infrastructure.Persistence;
 
 public class Repository<TEntity>(ApplicationDbContext context) : IRepository<TEntity> where TEntity : class
 {
-    private readonly DbSet<TEntity> dbSet = context.Set<TEntity>();
+    protected readonly DbSet<TEntity> dbSet = context.Set<TEntity>();
 
     public async Task Create(TEntity entity)
     {
