@@ -9,17 +9,25 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder
-        .HasMany(u => u.Recipes)
-        .WithOne(r => r.Creator);
-//        .IsRequired(true);
+        .Property(u => u.CreatorId)
+        .IsRequired(false);
 
         builder
-        .HasOne(u => u.Creator)
-        .WithMany(u => u.UsersCreated);
+        .Property(u => u.LastModifierId)
+        .IsRequired(false);
+
+        builder.HasOne<User>()
+        .WithMany()
+        .HasForeignKey(u => u.CreatorId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
 
         builder
-        .HasOne(u => u.LastModifier)
-        .WithMany(u => u.UsersModified);
+        .HasOne<User>()
+        .WithMany()
+        .HasForeignKey(u => u.LastModifierId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
 
         builder
         .HasMany(u => u.Follows)

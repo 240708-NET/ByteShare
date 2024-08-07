@@ -9,15 +9,25 @@ public class RecipeIngredientConfiguration : IEntityTypeConfiguration<RecipeIngr
     public void Configure(EntityTypeBuilder<RecipeIngredient> builder)
     {
         builder
-        .HasOne(r => r.Creator)
-        .WithMany(u => u.RecipeIngredients);
-
-        // builder
-        // .HasOne(r => r.LastModifier)
-        // .WithMany(u => u.RecipeIngredients);
+        .Property(u => u.CreatorId)
+        .IsRequired(false);
 
         builder
-        .HasOne(i => i.Ingredient)
-        .WithMany(r => r.RecipeIngredients);
+        .Property(u => u.LastModifierId)
+        .IsRequired(false);
+ 
+        builder
+        .HasOne<User>()
+        .WithMany()
+        .HasForeignKey(r => r.CreatorId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
+
+        builder
+        .HasOne<User>()
+        .WithMany()
+        .HasForeignKey(u => u.LastModifierId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
     }
 }

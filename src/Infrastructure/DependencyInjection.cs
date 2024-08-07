@@ -15,11 +15,12 @@ public static class DependencyInjection
         var connection = configuration.GetConnectionString("DefaultConnection");
 
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(
+            options
+            .UseSqlServer(
                 connection,
                 // TODO: Need to get the migration assembly dynamically.
                 // b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
-                b => b.MigrationsAssembly("ByteShare.Web.Api")
+                b => b.MigrationsAssembly("ByteShare.Web.API")
             )
         );
 

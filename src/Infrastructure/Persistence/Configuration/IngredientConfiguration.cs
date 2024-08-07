@@ -9,11 +9,29 @@ public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
     public void Configure(EntityTypeBuilder<Ingredient> builder)
     {
         builder
-        .HasOne(r => r.Creator)
-        .WithMany(u => u.Ingredients);
+        .Property(u => u.CreatorId)
+        .IsRequired(false);
 
-        // builder
-        // .HasOne(r => r.LastModifier)
-        // .WithMany(u => u.Ingredients);
+        builder
+        .Property(u => u.LastModifierId)
+        .IsRequired(false);
+
+        builder
+        .HasIndex(i => i.Name)
+        .IsUnique();
+
+        builder
+        .HasOne<User>()
+        .WithMany()
+        .HasForeignKey(u => u.CreatorId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
+
+        builder
+        .HasOne<User>()
+        .WithMany()
+        .HasForeignKey(u => u.LastModifierId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
     }
 }
