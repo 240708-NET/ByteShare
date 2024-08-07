@@ -2,8 +2,12 @@ using ByteShare.Domain.Common;
 
 namespace ByteShare.Domain.Entities;
 
-public class Ingredient : BaseAuditableEntity<int, User>
+public class Ingredient : BaseAuditableEntity<int?, User>
 {
-    public required string Name { get; set; }
-    public ICollection<RecipeIngredient> RecipeIngredients { get; } = [];
+    private string? _name;
+    public required string? Name
+    {
+        get => _name;
+        set => _name = value?.Trim().ToLower();
+    }
 }

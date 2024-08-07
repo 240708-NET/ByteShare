@@ -46,7 +46,7 @@ namespace ByteShare.Web.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     CreatorId = table.Column<int>(type: "int", nullable: true),
                     LastModified = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -204,6 +204,13 @@ namespace ByteShare.Web.Migrations
                 name: "IX_Ingredient_LastModifierId",
                 table: "Ingredient",
                 column: "LastModifierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ingredient_Name",
+                table: "Ingredient",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Recipe_CreatorId",

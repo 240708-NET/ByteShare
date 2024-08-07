@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ByteShare.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240806055328_Initial")]
+    [Migration("20240807192632_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace ByteShare.Web.Migrations
 
             modelBuilder.Entity("ByteShare.Domain.Entities.Ingredient", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -46,8 +46,7 @@ namespace ByteShare.Web.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -55,16 +54,20 @@ namespace ByteShare.Web.Migrations
 
                     b.HasIndex("LastModifierId");
 
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
                     b.ToTable("Ingredient");
                 });
 
             modelBuilder.Entity("ByteShare.Domain.Entities.Recipe", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -100,11 +103,11 @@ namespace ByteShare.Web.Migrations
 
             modelBuilder.Entity("ByteShare.Domain.Entities.RecipeIngredient", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -146,11 +149,11 @@ namespace ByteShare.Web.Migrations
 
             modelBuilder.Entity("ByteShare.Domain.Entities.RecipeRating", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -183,11 +186,11 @@ namespace ByteShare.Web.Migrations
 
             modelBuilder.Entity("ByteShare.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -239,101 +242,85 @@ namespace ByteShare.Web.Migrations
 
             modelBuilder.Entity("ByteShare.Domain.Entities.Ingredient", b =>
                 {
-                    b.HasOne("ByteShare.Domain.Entities.User", "Creator")
-                        .WithMany("Ingredients")
-                        .HasForeignKey("CreatorId");
-
-                    b.HasOne("ByteShare.Domain.Entities.User", "LastModifier")
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("LastModifierId");
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
-
-                    b.Navigation("LastModifier");
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("LastModifierId")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("ByteShare.Domain.Entities.Recipe", b =>
                 {
-                    b.HasOne("ByteShare.Domain.Entities.User", "Creator")
-                        .WithMany("Recipes")
-                        .HasForeignKey("CreatorId");
-
-                    b.HasOne("ByteShare.Domain.Entities.User", "LastModifier")
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("LastModifierId");
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
-
-                    b.Navigation("LastModifier");
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("LastModifierId")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("ByteShare.Domain.Entities.RecipeIngredient", b =>
                 {
-                    b.HasOne("ByteShare.Domain.Entities.User", "Creator")
-                        .WithMany("RecipeIngredients")
-                        .HasForeignKey("CreatorId");
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("ByteShare.Domain.Entities.Ingredient", "Ingredient")
-                        .WithMany("RecipeIngredients")
+                    b.HasOne("ByteShare.Domain.Entities.Ingredient", null)
+                        .WithMany()
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ByteShare.Domain.Entities.User", "LastModifier")
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("LastModifierId");
+                        .HasForeignKey("LastModifierId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("ByteShare.Domain.Entities.Recipe", "Recipe")
-                        .WithMany("RecipeIngredients")
+                    b.HasOne("ByteShare.Domain.Entities.Recipe", null)
+                        .WithMany()
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("Ingredient");
-
-                    b.Navigation("LastModifier");
-
-                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("ByteShare.Domain.Entities.RecipeRating", b =>
                 {
-                    b.HasOne("ByteShare.Domain.Entities.User", "Creator")
-                        .WithMany("RecipeRatings")
-                        .HasForeignKey("CreatorId");
-
-                    b.HasOne("ByteShare.Domain.Entities.User", "LastModifier")
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("LastModifierId");
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("ByteShare.Domain.Entities.Recipe", "Recipe")
-                        .WithMany("Ratings")
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("LastModifierId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("ByteShare.Domain.Entities.Recipe", null)
+                        .WithMany()
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("LastModifier");
-
-                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("ByteShare.Domain.Entities.User", b =>
                 {
-                    b.HasOne("ByteShare.Domain.Entities.User", "Creator")
-                        .WithMany("UsersCreated")
-                        .HasForeignKey("CreatorId");
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("ByteShare.Domain.Entities.User", "LastModifier")
-                        .WithMany("UsersModified")
-                        .HasForeignKey("LastModifierId");
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("LastModifier");
+                    b.HasOne("ByteShare.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("LastModifierId")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("UserUser", b =>
@@ -349,33 +336,6 @@ namespace ByteShare.Web.Migrations
                         .HasForeignKey("FollowsId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ByteShare.Domain.Entities.Ingredient", b =>
-                {
-                    b.Navigation("RecipeIngredients");
-                });
-
-            modelBuilder.Entity("ByteShare.Domain.Entities.Recipe", b =>
-                {
-                    b.Navigation("Ratings");
-
-                    b.Navigation("RecipeIngredients");
-                });
-
-            modelBuilder.Entity("ByteShare.Domain.Entities.User", b =>
-                {
-                    b.Navigation("Ingredients");
-
-                    b.Navigation("RecipeIngredients");
-
-                    b.Navigation("RecipeRatings");
-
-                    b.Navigation("Recipes");
-
-                    b.Navigation("UsersCreated");
-
-                    b.Navigation("UsersModified");
                 });
 #pragma warning restore 612, 618
         }

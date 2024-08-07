@@ -9,11 +9,30 @@ public class RecipeRatingConfiguration : IEntityTypeConfiguration<RecipeRating>
     public void Configure(EntityTypeBuilder<RecipeRating> builder)
     {
         builder
-        .HasOne(r => r.Creator)
-        .WithMany(u => u.RecipeRatings);
+        .Property(u => u.CreatorId)
+        .IsRequired(false);
 
-        // builder
-        // .HasOne(r => r.LastModifier)
-        // .WithMany(u => u.RecipeRatings);
+        builder
+        .Property(u => u.LastModifierId)
+        .IsRequired(false);
+
+        builder
+        .HasOne<User>()
+        .WithMany()
+        .HasForeignKey(r => r.CreatorId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
+
+        builder
+        .HasOne<User>()
+        .WithMany()
+        .HasForeignKey(u => u.LastModifierId)
+        .OnDelete(DeleteBehavior.NoAction)
+        .IsRequired(false);
+
+        builder
+        .HasOne<Recipe>()
+        .WithMany()
+        .HasForeignKey(r => r.RecipeId);
     }
 }

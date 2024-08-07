@@ -7,10 +7,8 @@ public abstract class BaseAuditableEntity<I, U> : BaseEntity<I>
 {
     [JsonIgnore]
     public DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
-    [JsonIgnore]
-    public U? Creator { get; set; }
+    public I? CreatorId { get; set; }
     [JsonIgnore]
     public DateTimeOffset LastModified { get; set; } = DateTimeOffset.UtcNow;
-    [JsonIgnore]
-    public U? LastModifier { get; set; }
+    public I? LastModifierId { get; set; }
 }
