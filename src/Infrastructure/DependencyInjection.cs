@@ -27,7 +27,7 @@ public static class DependencyInjection
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
         services.AddScoped<IRepository<User>, Repository<User>>();
-        services.AddScoped<IRepository<Recipe>, Repository<Recipe>>();
+        services.AddScoped<IRecipeRepository, RecipeRepository>();
         services.AddScoped<IRepository<RecipeRating>, Repository<RecipeRating>>();
         services.AddScoped<IRepository<RecipeIngredient>, Repository<RecipeIngredient>>();
         services.AddScoped<IRepository<Ingredient>, Repository<Ingredient>>();

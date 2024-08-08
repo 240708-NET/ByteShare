@@ -6,7 +6,7 @@ namespace ByteShare.Web.API.Controllers;
 
 [ApiController]
 [Route("api/recipes")]
-public class RecipeController(IRepository<Recipe> repository) : ControllerBase
+public class RecipeController(IRecipeRepository repository) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetRecipe(int id)
