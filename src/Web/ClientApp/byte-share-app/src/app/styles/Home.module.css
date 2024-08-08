@@ -1,0 +1,15 @@
+/* src/app/HomePage.module.css */
+.welcomeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center text inside the div */
+    padding: 0 20px; /* Optional: Add some padding for better mobile view */
+  }
+  
+  .welcomeContainer p {
+    font-size: 1.5em; /* Adjust the font size as needed */
+    line-height: 1.6; /* Adjust line height for readability */
+  }
+  

@@ -1,34 +1,35 @@
-'use client';
+import Header from "../components/Header";
 
-import React from 'react';
-import styles from '../styles/AboutUsStyle.module.css'
 
-const AboutUsPage: React.FC = () => {
-    return (
-        <main>
-        <div className={styles.aboutUsContainer}>
-            <div className={styles.header}>
+
+export default function Home() {
+
+  return(
+    <main>
+      <Header></Header>
+        <div className="about-us-container">
+            <div className="header">
                 <h1>Byte<span>Share</span> DevTeam</h1>
                 <p>Meet the team behind our project</p>
             </div>
-    
-            <div className={styles.developers}>
-                <div className={styles.developer}>
+
+            <div className="developers">
+                <div className="developer">
                     <img src="../images/BowlLogo.png" alt="Developer 1"/>
                     <h3>Bilal Mirza</h3>
                     <p>Title</p>
                 </div>
-                <div className={styles.developer}>
+                <div className="developer">
                     <img src="../images/BowlLogo.png" alt="Developer 2"/>
                     <h3>Bremer Jonathan</h3>
                     <p>Title</p>
                 </div>
-                <div className={styles.developer}>
+                <div className="developer">
                     <img src="../images/BowlLogo.png" alt="Developer 3"/>
                     <h3>Tamekia Nelson</h3>
                     <p>Title</p>
                 </div>
-                <div className={styles.developer}>
+                <div className="developer">
                     <img src="../images/BowlLogo.png" alt="Developer 4"/>
                     <h3>Robert Tan Huynh</h3>
                     <p>Title</p>
@@ -36,7 +37,5 @@ const AboutUsPage: React.FC = () => {
             </div>
         </div>
     </main>
-    )
-};
-
-export default AboutUsPage;
+  );
+}
