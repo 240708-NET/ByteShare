@@ -1,4 +1,4 @@
-using ByteShare.Application.Persistence;
+using ByteShare.Application.Repository;
 using ByteShare.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 

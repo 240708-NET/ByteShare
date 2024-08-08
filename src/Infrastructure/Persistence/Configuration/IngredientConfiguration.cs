@@ -9,6 +9,10 @@ public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
     public void Configure(EntityTypeBuilder<Ingredient> builder)
     {
         builder
+        .HasIndex(i => i.Name)
+        .IsUnique();
+
+        builder
         .Property(u => u.CreatorId)
         .IsRequired(false);
 
@@ -16,14 +20,15 @@ public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
         .Property(u => u.LastModifierId)
         .IsRequired(false);
 
-        builder
-        .HasIndex(i => i.Name)
-        .IsUnique();
+        // builder
+        // .HasOne<Recipe>()
+        // .WithMany()
+        // .HasForeignKey(r => r.RecipeId);
 
         builder
         .HasOne<User>()
         .WithMany()
-        .HasForeignKey(u => u.CreatorId)
+        .HasForeignKey(r => r.CreatorId)
         .OnDelete(DeleteBehavior.NoAction)
         .IsRequired(false);
 

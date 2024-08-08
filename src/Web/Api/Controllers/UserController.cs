@@ -1,4 +1,4 @@
-using ByteShare.Application.Persistence;
+using ByteShare.Application.Repository;
 using ByteShare.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +6,7 @@ namespace ByteShare.Web.API.Controllers;
 
 [ApiController]
 [Route("api/users")]
-public class UserController(IRepository<User> userRepository, IRecipeRepository recipeRepository) : ControllerBase
+public class UserController(IRepository<User, int> userRepository, IRecipeRepository recipeRepository) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUser(int id)
@@ -44,7 +44,7 @@ public class UserController(IRepository<User> userRepository, IRecipeRepository 
     }
 
     [HttpGet("{id}/recipes")]
-    public async Task<IActionResult> GetRecipes(int id)
+    public async Task<IActionResult> GetUserRecipes(int id)
     {
         var recipes = await recipeRepository.GetUserRecipes(id);
         return Ok(recipes);

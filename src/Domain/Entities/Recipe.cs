@@ -7,4 +7,5 @@ public class Recipe : BaseAuditableEntity<int?, User>
     public required string Title { get; set; }
     public string? Description { get; set; }
     public required string Instructions { get; set; }
+    public ICollection<Ingredient> Ingredients { get; set; } = [];
 }

@@ -10,8 +10,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder
         .ApplyConfiguration(new UserConfiguration())
         .ApplyConfiguration(new RecipeConfiguration())
-        .ApplyConfiguration(new RecipeRatingConfiguration())
-        .ApplyConfiguration(new RecipeIngredientConfiguration())
+        .ApplyConfiguration(new RatingConfiguration())
         .ApplyConfiguration(new IngredientConfiguration());
 
         base.OnModelCreating(builder);

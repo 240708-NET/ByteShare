@@ -30,12 +30,12 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
         .OnDelete(DeleteBehavior.NoAction)
         .IsRequired(false);
 
-        builder
-        .HasMany<Ingredient>()
-        .WithMany()
-        .UsingEntity<RecipeIngredient>(
-            l => l.HasOne<Ingredient>().WithMany().HasForeignKey(rI => rI.IngredientId),
-            r => r.HasOne<Recipe>().WithMany().HasForeignKey(rI => rI.RecipeId)
-        );
+        // builder
+        // .HasMany<Ingredient>()
+        // .WithMany()
+        // .UsingEntity<RecipeIngredient>(
+        //     // l => l.HasOne<Ingredient>().WithMany().HasForeignKey(rI => rI.IngredientId),
+        //     // r => r.HasOne<Recipe>().WithMany().HasForeignKey(rI => rI.RecipeId)
+        // );
     }
 }
