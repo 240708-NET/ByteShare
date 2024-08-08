@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import styles from '../styles/AllRecipes.module.css';
+import styles from './all-recipes.module.css';
 
 interface Recipe {
   id: number;

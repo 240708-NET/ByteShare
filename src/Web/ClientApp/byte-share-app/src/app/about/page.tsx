@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from '../styles/AboutUsStyle.module.css'
+import styles from './about-style.module.css';
 
 const AboutUsPage: React.FC = () => {
     return (

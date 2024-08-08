@@ -1,6 +1,6 @@
 // src/components/RecipeList.tsx
 import React from 'react';
-import styles from '../styles/MyRecipes.module.css';
+import styles from '../my-recipes/my-recipes.module.css';
 
 interface Recipe {
   id: number;

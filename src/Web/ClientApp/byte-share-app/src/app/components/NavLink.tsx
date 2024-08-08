@@ -8,8 +8,8 @@ import styles from '../styles/HeaderStyle.module.css'
 
 const links = [
   { name: 'Home', href: '/', icon: HomeIcon },
-  { name: 'Recipes', href: '/recipes', icon: GlobeAltIcon },
-  { name: 'About Us', href: '/about-us', icon: HeartIcon },
+  { name: 'Recipes', href: '/all-recipes', icon: GlobeAltIcon },
+  { name: 'About Us', href: '/about', icon: HeartIcon },
   { name: 'My Recipes', href: '/my-recipes', icon: BookOpenIcon },
 ];
 
