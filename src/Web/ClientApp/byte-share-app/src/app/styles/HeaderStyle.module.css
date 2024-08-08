@@ -39,10 +39,14 @@
     margin-left: 15px;
 }
 
+/* Menu container styles */
 .menuContainer {
     display: flex;
     align-items: center;
     margin-left: 8%;
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
 }
 
 .menuContainer li {
@@ -53,14 +57,25 @@
     color: #000;
     font-size: small;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 8px 0; /* Vertical padding */
 }
 
-.menuContainer li a:hover { /* Changes menu items color on hover */
+.menuContainer li a:hover {
     color: var(--sage-green-color);
 }
 
-.menuContainer li a:active { /* Changes menu items color on click */
+.menuContainer li a:active {
     color: var(--terracotta-color);
+}
+
+.menuContainer .icon {
+    width: 24px; /* Adjust the size of the icons */
+    height: 24px;
+    margin-right: 8px; /* Space between icon and text */
+    vertical-align: middle; /* Align icon with text */
 }
 
 .menuContainer button {
@@ -68,7 +83,10 @@
     padding: 10px 20px;
     font-weight: 300;
     border: none;
-    border-radius: 10%;
+    border-radius: 80px;
+    color: #fff;
+    display: flex;
+    align-items: center;
 }
 
 .menuContainer button:active {
@@ -78,4 +96,5 @@
 .menuContainer button a {
     color: #fff;
     font-weight: 300;
+    text-decoration: none; /* Ensure no underline */
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import NavLinks from './NavLink'
 import styles from '../styles/HeaderStyle.module.css'
 
 const Header: React.FC = () => {
@@ -14,10 +15,7 @@ const Header: React.FC = () => {
                 </div>
 
                 <ul className={styles.menuContainer}>
-                    <li><Link href="/">Home</Link></li>
-                    <li><Link href="/recipes">Recipes</Link></li>
-                    <li><Link href="/pages/aboutUs.tsx">About Us</Link></li>
-                    <li><Link href="/my-recipes">My Recipes</Link></li>
+                    <NavLinks />
                     <li><Link href="/login-register"><button>Login | Register</button></Link></li>
                 </ul>
             </nav>
