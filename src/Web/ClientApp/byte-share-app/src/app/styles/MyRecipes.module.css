@@ -1,0 +1,49 @@
+/* src/styles/Recipes.module.css */
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 80px auto 80px auto; /* Adds 80px margin at the top and bottom */
+  }
+  
+  .heading {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 400;
+  }
+  
+  .recipeList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recipeItem {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .recipeItem h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .recipeItem p {
+    margin: 5px 0;
+  }
+  
+  .addRecipeButton {
+    background-color: var(--dark-olive-green);
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 300;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 80px;
+  }
+
+.addRecipeButton:active {
+    background-color: var(--sage-green-color);
+}
