@@ -1,0 +1,68 @@
+/* src/styles/AllRecipes.module.css */
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 80px auto; /* Adds 80px margin at the top and bottom */
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .recipeList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .recipeCard {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .recipeTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .recipeDescription {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .recipeAuthor {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .recipeRating {
+    margin-bottom: 10px;
+  }
+  
+  .activeStar, .inactiveStar {
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffdd00;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+  
+  .inactiveStar {
+    color: #ddd;
+  }
+  
+  .recipeInstructions {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .recipeIngredients {
+    margin-top: 10px;
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  

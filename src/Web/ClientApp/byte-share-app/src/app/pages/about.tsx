@@ -16,22 +16,22 @@ const AboutUsPage: React.FC = () => {
                 <div className={styles.developer}>
                     <img src="../images/BowlLogo.png" alt="Developer 1"/>
                     <h3>Bilal Mirza</h3>
-                    <p>Title</p>
+                    <p>Front-End Developer and Scrum Master</p>
                 </div>
                 <div className={styles.developer}>
                     <img src="../images/BowlLogo.png" alt="Developer 2"/>
                     <h3>Bremer Jonathan</h3>
-                    <p>Title</p>
+                    <p>Server-Side Integration Lead</p>
                 </div>
                 <div className={styles.developer}>
                     <img src="../images/BowlLogo.png" alt="Developer 3"/>
                     <h3>Tamekia Nelson</h3>
-                    <p>Title</p>
+                    <p>QA and Testing Specialist</p>
                 </div>
                 <div className={styles.developer}>
                     <img src="../images/BowlLogo.png" alt="Developer 4"/>
                     <h3>Robert Tan Huynh</h3>
-                    <p>Title</p>
+                    <p>Backend Solutions Architect</p>
                 </div>
             </div>
         </div>
