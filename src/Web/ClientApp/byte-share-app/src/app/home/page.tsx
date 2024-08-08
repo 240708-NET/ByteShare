@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from '../styles/Home.module.css';
+import styles from './home.module.css';
 
 const HomePage: React.FC = () => {
     return (

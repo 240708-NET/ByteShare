@@ -2,9 +2,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
 import RecipeList from '../components/RecipeList';
-import styles from '../styles/MyRecipes.module.css';
+import styles from './my-recipes.module.css';
 
 interface Recipe {
   id: number;
@@ -94,7 +93,6 @@ const MyRecipes: React.FC = () => {
 
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <h1 className={styles.heading}>My Recipes</h1>
         {/* {loading ? (
