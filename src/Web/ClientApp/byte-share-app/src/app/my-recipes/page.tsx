@@ -1,7 +1,8 @@
-// src/pages/recipes.tsx
+// src/pages/my-recipes.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import RecipeList from '../components/RecipeList';
 import styles from './my-recipes.module.css';
 
@@ -15,61 +16,41 @@ interface Recipe {
 }
 
 const MyRecipes: React.FC = () => {
+  const [recipes, setRecipes] = useState<Recipe[]>([
+    {
+      id: 1,
+      title: 'Spaghetti Bolognese',
+      description: 'A classic Italian pasta dish with rich meat sauce.',
+      instructions: '1. Cook pasta. 2. Prepare sauce. 3. Combine and serve.',
+      recipeIngredients: ['Pasta', 'Ground Beef', 'Tomato Sauce', 'Onion', 'Garlic'],
+      ratings: 4.5,
+    },
+    {
+      id: 2,
+      title: 'Chicken Curry',
+      description: 'A spicy and flavorful chicken curry.',
+      instructions: '1. Cook chicken. 2. Prepare curry sauce. 3. Combine and serve.',
+      recipeIngredients: ['Chicken', 'Curry Powder', 'Coconut Milk', 'Onion', 'Garlic'],
+      ratings: 4.8,
+    },
+    {
+      id: 3,
+      title: 'Beef Stroganoff',
+      description: 'A rich and creamy beef stroganoff.',
+      instructions: '1. Cook beef. 2. Prepare sauce. 3. Combine and serve over noodles.',
+      recipeIngredients: ['Beef', 'Mushrooms', 'Sour Cream', 'Onion', 'Garlic'],
+      ratings: 4.7,
+    },
+  ]);
 
-    const [recipes, setRecipes] = useState<Recipe[]>([
-        {
-          id: 1,
-          title: 'Spaghetti Bolognese',
-          description: 'A classic Italian pasta dish with rich meat sauce.',
-          instructions: '1. Cook pasta. 2. Prepare sauce. 3. Combine and serve.',
-          recipeIngredients: ['Pasta', 'Ground Beef', 'Tomato Sauce', 'Onion', 'Garlic'],
-          ratings: 4.5,
-        },
-        {
-          id: 2,
-          title: 'Chicken Curry',
-          description: 'A spicy and flavorful chicken curry.',
-          instructions: '1. Cook chicken. 2. Prepare curry sauce. 3. Combine and serve.',
-          recipeIngredients: ['Chicken', 'Curry Powder', 'Coconut Milk', 'Onion', 'Garlic'],
-          ratings: 4.8,
-        },
-        {
-          id: 3,
-          title: 'Beef Stroganoff',
-          description: 'A rich and creamy beef stroganoff.',
-          instructions: '1. Cook beef. 2. Prepare sauce. 3. Combine and serve over noodles.',
-          recipeIngredients: ['Beef', 'Mushrooms', 'Sour Cream', 'Onion', 'Garlic'],
-          ratings: 4.7,
-        },
-      ]);
+  const router = useRouter();
 
-
-//   const [recipes, setRecipes] = useState<Recipe[]>([]);
-//   const [loading, setLoading] = useState<boolean>(true);
-//   const [error, setError] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     const fetchRecipes = async () => {
-//       try {
-//         const response = await fetch('http://localhost:5101/api/recipes'); //need an end point for just a single user's recipes
-//         if (!response.ok) {
-//           throw new Error('Failed to fetch recipes');
-//         }
-//         const data = await response.json();
-//         setRecipes(data);
-//       } catch (err) {
-//         if (err instanceof Error) {
-//           setError(err.message);
-//         } else {
-//           setError('An unknown error occurred');
-//         }
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchRecipes();
-//   }, []);
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; 
+    if (!isLoggedIn) {
+      router.push('/login'); 
+    }
+  }, [router]);
 
   const handleAddRecipe = () => {
     const newRecipeTitle = prompt('Enter the title of the new recipe:');
@@ -91,24 +72,22 @@ const MyRecipes: React.FC = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.setItem('isLoggedIn', 'false'); 
+    router.push('/login'); 
+  };
+
   return (
-    <>
-      <div className={styles.container}>
-        <h1 className={styles.heading}>My Recipes</h1>
-        {/* {loading ? (
-          <div>Loading...</div>
-        ) : error ? (
-          <div>Error: {error}</div>
-        ) : ( */}
-          <>
-            <RecipeList recipes={recipes} />
-          </>
-        {/* )} */}
-        <button className={styles.addRecipeButton} onClick={handleAddRecipe}>
-          Add New Recipe
-        </button>
-      </div>
-    </>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>My Recipes</h1>
+      <RecipeList recipes={recipes} />
+      <button className={styles.addRecipeButton} onClick={handleAddRecipe}>
+        Add New Recipe
+      </button>
+      <button className="logoutButton" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
   );
 };
 

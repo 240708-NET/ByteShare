@@ -16,7 +16,7 @@ const Header: React.FC = () => {
 
                 <ul className={styles.menuContainer}>
                     <NavLinks />
-                    <li><Link href="/login-register"><button>Login | Register</button></Link></li>
+                    <li><Link href="/login"><button>Login | Register</button></Link></li>
                 </ul>
             </nav>
         </header>
