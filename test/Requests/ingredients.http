@@ -1,33 +1,40 @@
 @id = 1
+@recipeId = 1
 @creatorId = 1
 @lastModifierId = 1
 
-### Create an ingredient.
+### Create a recipe-ingredient.
 POST http://localhost:5101/api/ingredients HTTP/1.1
 Content-Type: application/json
 
 {
-    "Name": "Sugar",
+    "RecipeId": {{recipeId}},
+    "Name": "Water",
+    "Amount": 4,
+    "Unit": "gallons",
     "CreatorId": {{creatorId}},
     "LastModifierId": {{lastModifierId}}
 }
 
-### Get an ingredient.
+### Get a recipe-ingredient.
 GET http://localhost:5101/api/ingredients/{{id}} HTTP/1.1
 
-### Update an ingredient.
+### Update a recipe-ingredient.
 PUT http://localhost:5101/api/ingredients HTTP/1.1
 Content-Type: application/json
 
 {
     "id": {{id}},
-    "Name": "Molasses",
+    "RecipeId": {{recipeId}},
+    "Name": "Sugar",
+    "Amount": 6789,
+    "Unit": "kg",
     "CreatorId": {{creatorId}},
     "LastModifierId": {{lastModifierId}}
 }
 
-### Delete an ingredient.
+### Delete a recipe-ingredient.
 DELETE http://localhost:5101/api/ingredients/{{id}} HTTP/1.1
 
-### Get all ingredients.
+### Get all recipe-ingredients.
 GET http://localhost:5101/api/ingredients HTTP/1.1

@@ -1,7 +1,7 @@
-//using ByteShare.Application.Common.Interface;
-using ByteShare.Application.Persistence;
+using ByteShare.Application.Repository;
 using ByteShare.Domain.Entities;
 using ByteShare.Infrastructure.Persistence;
+using ByteShare.Infrastructure.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +26,10 @@ public static class DependencyInjection
 
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
-        services.AddScoped<IRepository<User>, Repository<User>>();
+        services.AddScoped<IRepository<User, int>, Repository<User, int>>();
         services.AddScoped<IRecipeRepository, RecipeRepository>();
-        services.AddScoped<IRepository<RecipeRating>, Repository<RecipeRating>>();
-        services.AddScoped<IRepository<RecipeIngredient>, Repository<RecipeIngredient>>();
-        services.AddScoped<IRepository<Ingredient>, Repository<Ingredient>>();
+        services.AddScoped<IRepository<Rating, int>, Repository<Rating, int>>();
+        services.AddScoped<IRepository<Ingredient, int>, Repository<Ingredient, int>>();
 
         return services;
     }

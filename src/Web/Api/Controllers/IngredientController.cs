@@ -1,4 +1,4 @@
-using ByteShare.Application.Persistence;
+using ByteShare.Application.Repository;
 using ByteShare.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,13 +6,13 @@ namespace ByteShare.Web.API.Controllers;
 
 [ApiController]
 [Route("api/ingredients")]
-public class IngredientController(IRepository<Ingredient> repository) : ControllerBase
+public class IngredientController(IRepository<Ingredient, int> repository) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetIngredient(int id)
     {
-        var ingredient = await repository.GetById(id);
-        return Ok(ingredient);
+        var recipeIngredient = await repository.GetById(id);
+        return Ok(recipeIngredient);
     }
 
     [HttpPost]
@@ -23,10 +23,10 @@ public class IngredientController(IRepository<Ingredient> repository) : Controll
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateIngredient([FromBody] Ingredient ingredient)
+    public async Task<IActionResult> UpdateIngredient([FromBody] Ingredient Ingredient)
     {
-        await repository.Update(ingredient);
-        return Ok(ingredient);
+        await repository.Update(Ingredient);
+        return Ok(Ingredient);
     }
 
     [HttpDelete("{id}")]

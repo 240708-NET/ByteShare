@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ByteShare.Infrastructure.Persistence.Configuration;
 
-public class RecipeRatingConfiguration : IEntityTypeConfiguration<RecipeRating>
+public class RatingConfiguration : IEntityTypeConfiguration<Rating>
 {
-    public void Configure(EntityTypeBuilder<RecipeRating> builder)
+    public void Configure(EntityTypeBuilder<Rating> builder)
     {
         builder
         .Property(u => u.CreatorId)
