@@ -3,7 +3,7 @@ using ByteShare.Domain.Common;
 
 namespace ByteShare.Domain.Entities;
 
-public class User : AuditableEntity<int?>
+public class User : AuditableEntity<int?    >
 {
     public required string Username { get; set; }
     public required string Password { get; set; }

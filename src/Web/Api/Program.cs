@@ -11,6 +11,23 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
+var allowSome = "AllowAll";
+
+
+builder.Services.AddCors(options => 
+{  
+    options.AddPolicy(name: allowSome,  
+                      policy  =>  
+                      {  
+                          policy.WithOrigins("http://localhost:3000")
+                          .AllowCredentials()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                      });  
+});  
+  
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(allowSome);
 
 app.UseHttpsRedirection();
 
