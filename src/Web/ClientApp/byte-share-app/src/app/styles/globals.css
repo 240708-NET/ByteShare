@@ -37,8 +37,51 @@ body {
   background-color: var(--background-color);
 }
 
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  padding: 10px 40px;
+  border: none;
+  background-color: var(--sage-green-color);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: var(--dark-olive-green);
+}
 
 
+.logoutButton {
+  padding: 10px 40px;
+  border: none;
+  background-color: var(--terracotta-color);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.logoutButton:hover {
+  background-color: var(--beige-color);
+}
 
 /* :root {
   --foreground-rgb: 0, 0, 0;
