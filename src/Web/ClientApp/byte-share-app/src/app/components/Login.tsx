@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../login/LoginForm.module.css';
 
@@ -22,7 +22,17 @@ const Login: React.FC = () => {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); //added 8/8
     const router = useRouter();
+
+    useEffect(() => {
+        const checkLoginStatus = () => {
+            const loggedInStatus = localStorage.getItem('isLoggedIn') === 'true';
+            setIsLoggedIn(loggedInStatus);
+        };
+
+        checkLoginStatus();
+    }, []); //added 8/8
 
     const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -109,11 +119,15 @@ const Login: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className={styles.buttonContainer}>
-                    <button type="submit" name="action" value="login" className={styles.submitButton}>Login</button>
-                    <button type="submit" name="action" value="register" className={styles.submitButton}>Register</button>
-                </div>
-            </form>
+                <div className={styles.buttonContainer}> 
+                    {!isLoggedIn && (
+                        <>
+                            <button type="submit" name="action" value="login" className={styles.submitButton}>Login</button>
+                            <button type="submit" name="action" value="register" className={styles.submitButton}>Register</button>
+                        </>
+                    )}
+                </div> 
+            </form> 
         </div>
     );
 };
