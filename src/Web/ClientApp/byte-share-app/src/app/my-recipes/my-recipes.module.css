@@ -1,4 +1,9 @@
-/* src/styles/Recipes.module.css */
+/*
+This CSS styles the recipe page with a container for layout, a heading for the page title, and a list of recipes. 
+Each recipe item is separated by a border and margin. 
+The "Add Recipe" button is styled with background color, padding, and rounded corners, with a change in color on activation.
+*/
+
 .container {
     padding: 20px;
     max-width: 800px;

@@ -1,4 +1,9 @@
-// src/components/RecipeList.tsx
+/*
+This React component displays a list of recipes, each including a title, description, instructions, ingredients, and rating. 
+It takes a list of recipes as a prop and maps over them to render each recipe in a styled list. 
+The component uses styles from an external CSS module for layout and design.
+*/
+
 import React from 'react';
 import styles from '../my-recipes/my-recipes.module.css';
 

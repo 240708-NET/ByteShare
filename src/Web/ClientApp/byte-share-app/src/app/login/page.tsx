@@ -1,3 +1,9 @@
+/*
+This React component renders the login and registration page by including the `Login` component. 
+It wraps the `Login` component in a `div` container, providing the structure for the page.
+*/
+
+
 'use client';
 
 import React from 'react';

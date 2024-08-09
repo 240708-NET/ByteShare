@@ -1,4 +1,8 @@
-// src/components/Footer.tsx
+/*
+This React component renders the footer of the application. It displays the current year and a copyright notice 
+for ByteShare, as well as a credit to Team 3. The footer is styled using an external CSS module.
+*/
+
 import React from 'react';
 import styles from '../styles/FooterStyle.module.css';
 

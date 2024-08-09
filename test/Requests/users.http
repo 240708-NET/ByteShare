@@ -1,6 +1,6 @@
 @id = 2
-@username=bremer
-@password=jonathan
+@username=bob
+@password=bob
 
 ### Create a user.
 POST http://localhost:5101/api/users

@@ -1,3 +1,10 @@
+/*
+This React component handles user login and registration. It uses a `FormField` component for input fields and manages form state with React hooks. 
+On form submission, it sends requests to the API for login or registration based on the button clicked. 
+Successful login or registration redirects users to the `/my-recipes` page and stores the login state in localStorage. 
+Error messages are displayed if login or registration fails. Styles are applied using an external CSS module.
+*/
+
 'use client';
 import React, { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
@@ -39,7 +46,7 @@ const Login: React.FC = () => {
         if (action === 'login') {
             try {
                 // Send GET request to the API endpoint
-                const response = await fetch(`http://localhost:5101/api/users/username=${username}&password=${password}`, {
+                const response = await fetch(`http://localhost:5101/api/users/login/?username=${username}&password=${password}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

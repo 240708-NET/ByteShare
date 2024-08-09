@@ -1,3 +1,10 @@
+/*
+This CSS styles a login form and various buttons. The form container is centered and styled with padding, background color, 
+border-radius, and box shadow. Input fields and buttons have consistent styling for padding, borders, background colors, 
+and hover effects. Buttons are displayed in flex containers for spacing, and error messages are styled in red with margin spacing.
+*/
+
+
 #form{
     width:400px;
     margin: 10em auto;
