@@ -1,9 +1,10 @@
     'use client';
     import React, { useState, FormEvent } from 'react';
     import { useRouter } from 'next/navigation';
+    import styles from '../login/LoginForm.module.css'
 
     const FormField: React.FC<{ id: string, label: string, type: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }> = ({ id, label, type, value, onChange }) => (
-    <div className="form-group">
+    <div className={styles.formGroup}>
         <label htmlFor={id}>{label}</label>
         <input
         type={type}
@@ -12,7 +13,7 @@
         required
         value={value}
         onChange={onChange}
-        className="input-field"
+        className={styles.inputField}
         />
     </div>
     );
@@ -31,7 +32,7 @@
     };
 
     return (
-        <div className="login-container">
+        <div className={styles.loginContainer}>
         <h2>Login</h2>
         <form onSubmit={handleFormSubmit}>
             <FormField
@@ -48,7 +49,7 @@
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit" className="submit-button">Login</button>
+            <button type="submit" className={styles.submitButton}>Login</button>
         </form>
         </div>
     );
