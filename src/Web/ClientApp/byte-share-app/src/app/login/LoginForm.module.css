@@ -91,3 +91,13 @@
   .deleteButton:hover {
     background-color: var(--beige-color);
   }
+
+  .buttonContainer {
+    display: flex;
+    gap: 10px; /* Adjust spacing between buttons as needed */
+  }
+
+  .errorMessage {
+    color: red;
+    margin-bottom: 10px;
+}
