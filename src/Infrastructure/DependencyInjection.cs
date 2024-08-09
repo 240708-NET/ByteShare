@@ -26,10 +26,10 @@ public static class DependencyInjection
 
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
-        services.AddScoped<IRepository<User, int>, Repository<User, int>>();
+        services.AddScoped<IRepository<User, int?>, GenericRepository<User, int?>>();
         services.AddScoped<IRecipeRepository, RecipeRepository>();
-        services.AddScoped<IRepository<Rating, int>, Repository<Rating, int>>();
-        services.AddScoped<IRepository<Ingredient, int>, Repository<Ingredient, int>>();
+        services.AddScoped<IRepository<Rating, int?>, GenericRepository<Rating, int?>>();
+        services.AddScoped<IRepository<Ingredient, int?>, GenericRepository<Ingredient, int?>>();
 
         return services;
     }

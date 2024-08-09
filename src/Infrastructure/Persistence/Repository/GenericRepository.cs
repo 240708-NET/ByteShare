@@ -1,14 +1,15 @@
 using ByteShare.Application.Repository;
+using ByteShare.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace ByteShare.Infrastructure.Persistence.Repository;
 
-public class Repository<TEntity, Id> : IRepository<TEntity, Id> where TEntity : class
+public class GenericRepository<TEntity, Id> : IRepository<TEntity, Id> where TEntity : BaseEntity<Id>
 {
     protected readonly ApplicationDbContext context;
     protected readonly DbSet<TEntity> dbSet;
 
-    public Repository(ApplicationDbContext context) {
+    public GenericRepository(ApplicationDbContext context) {
         this.context = context;
         dbSet = context.Set<TEntity>();
     }
@@ -46,10 +47,22 @@ public class Repository<TEntity, Id> : IRepository<TEntity, Id> where TEntity : 
         return await context.FindAsync<TEntity>(id);
     }
 
-    public virtual async Task Update(TEntity entity)
+    public virtual async Task<int> Update(TEntity _new)
     {
-        dbSet.Attach(entity);
-        context.Entry(entity).State = EntityState.Modified;
-        await context.SaveChangesAsync();
+        Id? id = _new.Id;
+        if(id is null)
+        {
+            return 0;
+        }
+
+        var _old = await GetById(id);
+        if(_old is null)
+        {
+            return 0;
+        }
+        
+        context.Entry(_old).CurrentValues.SetValues(_new);
+        //context.Entry(entity).State = EntityState.Modified;
+        return await context.SaveChangesAsync();
     }
 }

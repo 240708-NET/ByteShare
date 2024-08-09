@@ -6,13 +6,13 @@ namespace ByteShare.Web.API.Controllers;
 
 [ApiController]
 [Route("api/ingredients")]
-public class IngredientController(IRepository<Ingredient, int> repository) : ControllerBase
+public class IngredientController(IRepository<Ingredient, int?> repository) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetIngredient(int id)
     {
-        var recipeIngredient = await repository.GetById(id);
-        return Ok(recipeIngredient);
+        var ingredient = await repository.GetById(id);
+        return Ok(ingredient);
     }
 
     [HttpPost]
@@ -23,10 +23,10 @@ public class IngredientController(IRepository<Ingredient, int> repository) : Con
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateIngredient([FromBody] Ingredient Ingredient)
+    public async Task<IActionResult> UpdateIngredient([FromBody] Ingredient ingredient)
     {
-        await repository.Update(Ingredient);
-        return Ok(Ingredient);
+        int updates = await repository.Update(ingredient);
+        return updates == 1 ? Ok(): ValidationProblem();
     }
 
     [HttpDelete("{id}")]

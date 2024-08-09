@@ -1,6 +1,6 @@
 namespace ByteShare.Domain.Common;
 
-public abstract class BaseEntity<I>
+public abstract class BaseEntity<T>
 {
-        public I? Id {get; set;}
+        public T? Id {get; set;}
 }

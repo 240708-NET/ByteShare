@@ -1,9 +1,7 @@
-// src/pages/my-recipes.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import RecipeList from '../components/RecipeList';
 import styles from './my-recipes.module.css';
 
 interface Recipe {
@@ -72,6 +70,36 @@ const MyRecipes: React.FC = () => {
     }
   };
 
+  const handleEditRecipe = (recipeId: number) => {
+    const recipeToEdit = recipes.find((recipe) => recipe.id === recipeId);
+    if (recipeToEdit) {
+      const updatedTitle = prompt('Edit the title:', recipeToEdit.title);
+      const updatedDescription = prompt('Edit the description:', recipeToEdit.description);
+      const updatedInstructions = prompt('Edit the instructions:', recipeToEdit.instructions);
+      const updatedIngredients = prompt('Edit the ingredients (comma-separated):', recipeToEdit.recipeIngredients.join(', '))?.split(',');
+      const updatedRating = parseFloat(prompt('Edit the rating (0-5):', recipeToEdit.ratings.toString()) || recipeToEdit.ratings.toString());
+
+      const updatedRecipe: Recipe = {
+        ...recipeToEdit,
+        title: updatedTitle || recipeToEdit.title,
+        description: updatedDescription || recipeToEdit.description,
+        instructions: updatedInstructions || recipeToEdit.instructions,
+        recipeIngredients: updatedIngredients || recipeToEdit.recipeIngredients,
+        ratings: updatedRating,
+      };
+
+      const updatedRecipes = recipes.map((recipe) =>
+        recipe.id === recipeId ? updatedRecipe : recipe
+      );
+      setRecipes(updatedRecipes);
+    }
+  };
+
+  const handleDeleteRecipe = (recipeId: number) => {
+    const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
+    setRecipes(updatedRecipes);
+  };
+
   const handleLogout = () => {
     localStorage.setItem('isLoggedIn', 'false'); 
     router.push('/login'); 
@@ -80,7 +108,17 @@ const MyRecipes: React.FC = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>My Recipes</h1>
-      <RecipeList recipes={recipes} />
+      {recipes.map((recipe) => (
+        <div key={recipe.id} className={styles.recipeCard}>
+          <h3>{recipe.title}</h3>
+          <p>{recipe.description}</p>
+          <p>Instructions: {recipe.instructions}</p>
+          <p>Ingredients: {recipe.recipeIngredients.join(', ')}</p>
+          <p>Rating: {recipe.ratings.toFixed(1)}</p>
+          <button className= "editButton" onClick={() => handleEditRecipe(recipe.id)}>Edit Recipe</button>
+          <button className= "deleteButton" onClick={() => handleDeleteRecipe(recipe.id)}>Delete Recipe</button>
+        </div>
+      ))}
       <button className={styles.addRecipeButton} onClick={handleAddRecipe}>
         Add New Recipe
       </button>

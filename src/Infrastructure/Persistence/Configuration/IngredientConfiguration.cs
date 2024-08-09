@@ -9,8 +9,7 @@ public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
     public void Configure(EntityTypeBuilder<Ingredient> builder)
     {
         builder
-        .HasIndex(i => i.Name)
-        .IsUnique();
+        .HasIndex(i => i.Name);
 
         builder
         .Property(u => u.CreatorId)

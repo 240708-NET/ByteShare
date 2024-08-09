@@ -11,7 +11,16 @@ Content-Type: application/json
     "Description": "How to cook banana bread, Danish style",
     "Instructions": "Take 1 teaspoon of sugar",
     "CreatorId": {{creatorId}},
-    "LastModifierId": {{lastModifierId}}
+    "LastModifierId": {{lastModifierId}},
+    "Ingredients": [
+      {
+        "Name": "Sugar",
+        "Amount": 4,
+        "Unit": "cups",
+        "CreatorId": {{creatorId}},
+        "LastModifierId": {{lastModifierId}}
+      }
+    ]
 }
 
 ### Get a recipe.
