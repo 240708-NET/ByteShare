@@ -1,17 +1,22 @@
-@id = 1
+@id = 2
+@username=bremer
+@password=jonathan
 
 ### Create a user.
 POST http://localhost:5101/api/users
 Content-Type: application/json
 
 {
-    "Username": "adalovelace",
-    "Password": "abc123",
-    "Email": "ada@revature.com"
+    "username": "bilal",
+    "password": "abc123",
+    "email": "ada@revature.com"
 }
 
 ### Get a user.
 GET http://localhost:5101/api/users/{{id}} HTTP/1.1
+
+### Get a user by username and password.
+GET http://localhost:5101/api/users/login/?username={{username}}&password={{password}} HTTP/1.1
 
 ### Update a user.
 PUT http://localhost:5101/api/users HTTP/1.1

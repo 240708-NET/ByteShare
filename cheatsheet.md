@@ -66,5 +66,3 @@ GO
   - Check and update accordingly, the connection string in `src/Web/API/appsettings.json`.
   - Delete the `Migrations` folder for a fresh migration.
   - Nuke the database (see above) for a fresh update.
-
-  npm install @heroicons/react

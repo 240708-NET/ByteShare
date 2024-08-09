@@ -6,7 +6,7 @@ namespace ByteShare.Web.API.Controllers;
 
 [ApiController]
 [Route("api/users")]
-public class UserController(IRepository<User, int?> userRepository, IRecipeRepository recipeRepository) : ControllerBase
+public class UserController(IUserRepository userRepository, IRecipeRepository recipeRepository, ILogger<UserController> logger) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUser(int id)
@@ -14,6 +14,16 @@ public class UserController(IRepository<User, int?> userRepository, IRecipeRepos
         var user = await userRepository.GetById(id);
         return Ok(user);
     }
+
+    [HttpGet("login")]
+    public async Task<IActionResult> GetUser([FromQuery(Name="username")]string username, [FromQuery(Name="password")]string password)
+    {
+        // username = username.Trim('"');
+        // password = password.Trim('"');
+        var user = await userRepository.GetUserByUsernamePassword(username, password);
+        return Ok(user);
+    }
+
 
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] User user)
