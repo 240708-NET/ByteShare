@@ -4,13 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ByteShare.Infrastructure.Persistence.Repository;
 
-public class RecipeRepository : Repository<Recipe, int>, IRecipeRepository
+public class RecipeRepository : GenericRepository<Recipe, int?>, IRecipeRepository
 {
     public RecipeRepository(ApplicationDbContext context) : base(context) {}
 
-    public override async Task<Recipe?> GetById(int id)
+    public override async Task<Recipe?> GetById(int? id)
     {
-        return await context.FindAsync<Recipe>(id);
+        return await dbSet
+                    .Where(r => r.Id == id)
+                    .Include(r => r.Ingredients)
+                    .SingleOrDefaultAsync();
     }
 
     public override async Task<ICollection<Recipe>> GetAll()

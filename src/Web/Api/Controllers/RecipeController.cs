@@ -1,5 +1,7 @@
 using ByteShare.Application.Repository;
+using ByteShare.Domain.Common;
 using ByteShare.Domain.Entities;
+using ByteShare.Domain.Extension;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ByteShare.Web.API.Controllers;
@@ -18,6 +20,7 @@ public class RecipeController(IRecipeRepository repository) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateRecipe([FromBody] Recipe recipe)
     {
+        recipe.Ingredients.CopyUserIfNull(recipe);
         await repository.Create(recipe);
         return Ok(recipe);
     }
@@ -25,8 +28,8 @@ public class RecipeController(IRecipeRepository repository) : ControllerBase
     [HttpPut]
     public async Task<IActionResult> UpdateRecipe([FromBody] Recipe recipe)
     {
-        await repository.Update(recipe);
-        return Ok(recipe);
+        int updates = await repository.Update(recipe);
+        return updates == 1 ? Ok(): ValidationProblem();
     }
 
     [HttpDelete("{id}")]

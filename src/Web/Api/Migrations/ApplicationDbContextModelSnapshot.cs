@@ -49,7 +49,7 @@ namespace ByteShare.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int?>("RecipeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Unit")
@@ -62,8 +62,7 @@ namespace ByteShare.Web.Migrations
 
                     b.HasIndex("LastModifierId");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("Name");
 
                     b.HasIndex("RecipeId");
 
@@ -217,9 +216,7 @@ namespace ByteShare.Web.Migrations
 
                     b.HasOne("ByteShare.Domain.Entities.Recipe", null)
                         .WithMany("Ingredients")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RecipeId");
                 });
 
             modelBuilder.Entity("ByteShare.Domain.Entities.Rating", b =>
