@@ -63,3 +63,31 @@
     background-color: var(--beige-color);
   }
   
+  .editButton {
+    padding: 5px 20px;
+    border: none;
+    background-color: var(--sage-green-color);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+  }
+  
+  .editButton:hover {
+    background-color: var(--dark-olive-green);
+  }
+  
+  .deleteButton {
+    padding: 5px 20px;
+    border: none;
+    background-color: var(--terracotta-color);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .deleteButton:hover {
+    background-color: var(--beige-color);
+  }
