@@ -1,3 +1,10 @@
+/*
+This React component renders the header of the application, including a navigation bar with a logo and menu links. 
+The logo links to the homepage, and there is a button for login or registration. Navigation styles are applied 
+using an external CSS module.
+*/
+
+
 import React from 'react';
 import Link from 'next/link';
 import NavLinks from './NavLink'

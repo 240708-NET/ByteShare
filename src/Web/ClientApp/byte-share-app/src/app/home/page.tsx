@@ -1,3 +1,10 @@
+/*
+This React component renders the homepage of ByteShare. It displays a welcoming message encouraging users to join and engage with the platform. 
+The message emphasizes discovering new dishes and sharing culinary creations. 
+Styling is applied using an external CSS module.
+*/
+
+
 'use client';
 
 import React from 'react';

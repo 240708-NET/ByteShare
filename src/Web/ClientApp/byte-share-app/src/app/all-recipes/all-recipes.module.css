@@ -1,4 +1,10 @@
-/* src/styles/AllRecipes.module.css */
+/*
+This CSS styles the All Recipes page, providing a clean layout for displaying recipes. 
+It centers the main container with padding and margin, and styles each recipe card with borders and padding. 
+The recipe details, including title, description, author, rating, ingredients, and instructions, 
+are formatted for clarity and readability, with active and inactive stars styled for ratings.
+*/
+
 .container {
     padding: 20px;
     max-width: 800px;

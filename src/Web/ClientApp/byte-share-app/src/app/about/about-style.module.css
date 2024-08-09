@@ -1,3 +1,8 @@
+/* 
+This CSS styles the About Us page with a centered container, white background, and subtle shadow. 
+It arranges developer profiles in a flexible layout with circular images and centered text.
+*/
+
 .aboutUsContainer {
     max-width: 1200px;
     margin: 100px auto 20px; /* Adjusted margin to account for the fixed navbar */

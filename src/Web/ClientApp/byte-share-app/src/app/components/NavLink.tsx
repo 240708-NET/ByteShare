@@ -1,3 +1,11 @@
+/*
+This React component renders a navigation menu with links to different pages. 
+It uses `usePathname` to determine the current route and applies an 'active' class to the currently active link. 
+Each menu item includes an icon and label, with icons imported from Heroicons. 
+The navigation links are styled using an external CSS module.
+*/
+
+
 'use client';
 
 import React from 'react';

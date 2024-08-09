@@ -1,3 +1,9 @@
+/*
+This React component displays the About Us page for ByteShare. It includes a main container with a header 
+introducing the development team. Each developer is showcased with a profile picture, name, and role description, 
+all styled using an external CSS module.
+*/
+
 'use client';
 
 import React from 'react';

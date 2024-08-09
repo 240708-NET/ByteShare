@@ -1,3 +1,9 @@
+/**
+ * RootLayout component serves as the main layout for the application.
+ * It wraps all pages with a common structure including the Header and Footer components.
+ * It also applies global styles and font settings to ensure consistent typography and design across the site.
+ */
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./styles/globals.css";

@@ -1,3 +1,10 @@
+/*
+This React component displays a list of recipes fetched from an API. It handles loading and error states, 
+and allows users to rate recipes using star buttons. The component organizes the recipes into cards with details 
+such as title, description, author, and instructions, and includes styling for a clean and responsive layout.
+*/
+
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
