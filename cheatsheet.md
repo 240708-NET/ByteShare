@@ -35,7 +35,7 @@ git branch -d <branch name>
 git mv <source> <destination>
 ```
 
-### SQL for nuking a DB (The DB name is ByteShare in this example):
+### Nuking a SQL Server Database (Database name is ByteShare in example):
 ```sql
 USE [master]
 GO
@@ -46,3 +46,25 @@ GO
 DROP DATABASE [ByteShare]
 GO
 ```
+
+### Running the backend:
+- Path: `src/Web/API`
+- Command: `dotnet run`
+
+### Running the frontend:
+- Path: `src/Web/ClientApp`
+- Command: `npm dev`
+- #### Notes:
+  - When running for the first time, run command `npm install` to install dependencies.
+
+### Data migration followed by database update:
+- Path: `src/Web/API`
+- Migration command: `dotnet ef migrations add <migration name here>`
+- Database update command: `dotnet ef database update`
+- #### Notes:
+  - The SQL Server docker container should be running.
+  - Check and update accordingly, the connection string in `src/Web/API/appsettings.json`.
+  - Delete the `Migrations` folder for a fresh migration.
+  - Nuke the database (see above) for a fresh update.
+
+  npm install @heroicons/react

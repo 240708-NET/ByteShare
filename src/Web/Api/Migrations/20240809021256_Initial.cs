@@ -98,7 +98,7 @@ namespace ByteShare.Web.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    RecipeId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Amount = table.Column<float>(type: "real", nullable: false),
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -114,8 +114,7 @@ namespace ByteShare.Web.Migrations
                         name: "FK_Ingredient_Recipe_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Ingredient_User_CreatorId",
                         column: x => x.CreatorId,
@@ -175,8 +174,7 @@ namespace ByteShare.Web.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredient_Name",
                 table: "Ingredient",
-                column: "Name",
-                unique: true);
+                column: "Name");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredient_RecipeId",

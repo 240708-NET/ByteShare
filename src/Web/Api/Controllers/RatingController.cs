@@ -6,7 +6,7 @@ namespace ByteShare.Web.API.Controllers;
 
 [ApiController]
 [Route("api/recipe-ratings")]
-public class RatingController(IRepository<Rating, int> repository) : ControllerBase
+public class RatingController(IRepository<Rating, int?> repository) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetRating(int id)
@@ -25,8 +25,8 @@ public class RatingController(IRepository<Rating, int> repository) : ControllerB
     [HttpPut]
     public async Task<IActionResult> UpdateRating([FromBody] Rating rating)
     {
-        await repository.Update(rating);
-        return Ok(rating);
+        int updates = await repository.Update(rating);
+        return updates == 1 ? Ok(): ValidationProblem();
     }
 
     [HttpDelete("{id}")]

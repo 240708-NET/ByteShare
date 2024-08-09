@@ -6,7 +6,7 @@ namespace ByteShare.Web.API.Controllers;
 
 [ApiController]
 [Route("api/users")]
-public class UserController(IRepository<User, int> userRepository, IRecipeRepository recipeRepository) : ControllerBase
+public class UserController(IRepository<User, int?> userRepository, IRecipeRepository recipeRepository) : ControllerBase
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUser(int id)
@@ -25,8 +25,8 @@ public class UserController(IRepository<User, int> userRepository, IRecipeReposi
     [HttpPut]
     public async Task<IActionResult> UpdateUser([FromBody] User user)
     {
-        await userRepository.Update(user);
-        return Ok(user);
+        int updates = await userRepository.Update(user);
+        return updates == 1 ? Ok(): ValidationProblem();
     }
 
     [HttpDelete("{id}")]
