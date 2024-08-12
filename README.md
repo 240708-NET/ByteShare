@@ -12,6 +12,15 @@ This project is a recipe-sharing web application designed to allow users to crea
 - As a user I want to rate recipes.
 - As a user I want to see the recipes of other users.
 
+## Technologies Used:
+- C#
+- Docker (Local)
+- Sql Server
+- Entity Framework 
+- REST
+- React (Next.js)
+- ASP.NET Core Web API
+
 ## Running the application:
 ### Backend
 The backend application is a .NET Core code-first application with MS SQL Server as the database server. In order to run the backend application data migration is required.
@@ -24,22 +33,23 @@ The backend application is a .NET Core code-first application with MS SQL Server
     - The MS SQL Server should be running.
     - The connection string in `src/Web/API/appsettings.json` should be valid.
     - For fresh migrations, delete the `Migrations` folder in `src/Web/API`.
-    - For fresh database updates, nuke the database using SQL above.
+    - For fresh database updates, nuke the database using SQL code below.
+
+      #### Nuking the SQL Server Database (Database name is ByteShare in example):
+      ```sql
+      USE [master]
+      GO
+      ALTER DATABASE [ByteShare] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+      GO
+      USE [master]
+      GO
+      DROP DATABASE [ByteShare]
+      GO
+      ```
+
 ### Frontend
 The frontend application is build using React Nextjs.
 - To run it navigate to `src/Web/ClientAppAPI` then run the command:
-  - `npm dev`
+  - `npm run dev`
   - Note:
     - Run command `npm install` to install dependencies.
-
-## Nuking a SQL Server Database (Database name is ByteShare in example):
-```sql
-USE [master]
-GO
-ALTER DATABASE [ByteShare] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
-GO
-USE [master]
-GO
-DROP DATABASE [ByteShare]
-GO
-```
